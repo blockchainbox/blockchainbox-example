@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  - var something = function() {
+  -   console.log('something')
+  - }
+  script.
+    function redirect(path) {
+      window.location = path;
+    }
+  h1= title
+  h3 #{message}
+  ul
+  each todo in todos
+    li 
+      if todo.finished == true
+        input(type='checkbox', name=todo.num, onclick='redirect("/update?num=#{todo.num}&title=#{todo.title}&finished=false")', checked)
+        s= todo.title
+      else
+        input(type='checkbox', name=todo.num, onclick='redirect("/update?num=#{todo.num}&title=#{todo.title}&finished=false")')
+        =todo.title
